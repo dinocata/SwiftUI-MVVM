@@ -8,7 +8,7 @@ This app has minimal functionality and serves mainly as a showcase for how to se
 ### Note:
 This is a work-in-progress project and will be updated in the future with further code examples.
 
-# Tech Stack
+## Tech Stack
 - Swift
 - SwiftUI
 - Async await
@@ -16,21 +16,25 @@ This is a work-in-progress project and will be updated in the future with furthe
 
 ## How to install
 Simply run the following commands in the root directory after pulling the project:
-<code>make install</code>
+
+<code>make install</code> (required only once or when you want to update dependency versions)
+
 <code>make project</code>
 
-This will install all the necessary dependencies, git hooks and generate the Xcode project.
+This will install all the necessary dependencies, git hooks and generate the Xcode project. 
+
+Run <code>make project</code> whenever you change the <code>project.yml</code> configuration file.
 
 ## Git hooks
 Whenever you pull the project or switch branches, <code>make project</code> command will be automatically executed to ensure Xcode project file references are up-to-date.
 
 Whenever you commit on a branch, Swiftlint will be executed to validate your code. In case linting fails, whole commit will fail.
-There is also a custom <code>commit-msg</code> hook for validating commit messages which also pre-pends a Jira ticket to the commit message.
+There is also a custom <code>commit-msg</code> hook for validating commit messages which also prepends a Jira ticket to the commit message.
 
 ## Why XcodeGen
-XcodeGen provides several huge benefits:
-- Ensures consistent Xcode project structure that matches the finder project structure. No more hanging dead files in the finder that aren't referenced in the Xcode project.
-- Provides single centralized <code>.yml</code> file for all project-specific configuration. There is no longer a need to navigate through various tabs in the project settings to edit what you need. 
+XcodeGen will save you time and headaches. It provides several benefits:
+- Ensures consistent Xcode project file structure that matches the finder file structure. No more hanging dead files in the finder that aren't referenced anywhere in the Xcode project.
+- Provides a single centralized <code>project.yml</code> file for all project-specific configuration. There is no longer need to navigate and search through various tabs in the project settings to edit what you need with a risk to mess something up. 
 Only the custom project-specific configuration is contained in the configuration file, which ensures default configuration is unnaffected if omitted from the file.
 - Simplifies dependency and target definitions. Creating a new module framework is easier than ever.
 - <code>.xcodeproj</code> file can be added to <code>.gitignore</code> ensuring no more nasty <code>.pbxproj</code> file conflicts.
@@ -38,12 +42,12 @@ Only the custom project-specific configuration is contained in the configuration
 
 ## Why Makefile
 Makefile is used as a "glue" to pull all the necessary dependencies (defined in <code>Gemfile</code> and <code>Brewfile</code>) and generate the whole project using two simple commands. Without it, all the depedencies would have to be manually installed one-by-one.
-It also provides a custom command for running a local CI.
+It also provides a convenient custom command for running a local CI and several other custom commands.
 
 ## Why Sourcery
-This tool automatically generate boiler plate code, saving you bunch of time from writing repetitive code such as class mocks, while providing consistency and easier maintenance.
+This tool automatically generate boiler plate code, saving you bunch of time from writing repetitive code such as class mocks, while providing consistency and better code maintenance.
 
-When utilized with Swinject, Sourcery can automatically generate dependency injection Containers. To inject any dependency to any class, simply use the custom <code>Injectable</code> protocol. To learn more how this works, read [this](https://blog.trikoder.net/dependency-injection-in-swift-666a6c51ca3a)https://blog.trikoder.net/dependency-injection-in-swift-666a6c51ca3a article.
+When utilized with Swinject, Sourcery can automatically generate dependency injection containers for you. To inject any dependency to any class, simply use the custom <code>Injectable</code> protocol. To learn more how this works, read [this](https://blog.trikoder.net/dependency-injection-in-swift-666a6c51ca3a) article on how to setup automized dependency injection in Swift.
 
 ## Why Swiftgen
-This tool generates type-safe enums for Assets, colors and localizazations, minimizing risks of crashes or bugs when referencing missing resources.
+This tool generates type-safe enums for Assets, colors and localizations, minimizing risks of crashes or bugs when referencing missing resources while improving maintainability and consistency. It complements well with Sourcery.
