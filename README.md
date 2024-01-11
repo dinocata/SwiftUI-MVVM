@@ -21,6 +21,12 @@ Simply run the following commands in the root directory after pulling the projec
 
 This will install all the necessary dependencies, git hooks and generate the Swift code.
 
+## Git hooks
+Whenever you pull the project or switch branches, <code>make project</code> command will be automatically executed to ensure Xcode project file references are up-to-date.
+
+Whenever you commit on a branch, Swiftlint will be executed to validate your code. In case linting fails, whole commit will fail.
+There is also a custom <code>commit-msg</code> hook for validating commit messages which also pre-pends a Jira ticket to the commit message.
+
 ## Why XcodeGen
 XcodeGen provides several huge benefits:
 - Ensures consistent Xcode project structure that matches the finder project structure. No more hanging dead files in the finder that aren't referenced in the Xcode project.
