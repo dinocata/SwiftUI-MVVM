@@ -19,7 +19,7 @@ Simply run the following commands in the root directory after pulling the projec
 <code>make install</code>
 <code>make project</code>
 
-This will install all the necessary dependencies, git hooks and generate the Swift code.
+This will install all the necessary dependencies, git hooks and generate the Xcode project.
 
 ## Git hooks
 Whenever you pull the project or switch branches, <code>make project</code> command will be automatically executed to ensure Xcode project file references are up-to-date.
