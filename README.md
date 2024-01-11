@@ -11,8 +11,12 @@ This is a work-in-progress project and will be updated in the future with furthe
 ## Tech Stack
 - Swift
 - SwiftUI
-- Async await
 - Combine
+- Async await
+
+This is not a mashup of bunch of different frameworks just to have it in the project for the sake of it.  All the tools and frameworks are used with specific purpose where it was appropriate so they properly complement each other with no overlapping.
+
+For example, async-await is used for all asynchronous work, while Combine is used primarily for reactive purposes, such as handling user interaction or updating UI based on some app state.
 
 ## How to install
 Simply run the following commands in the root directory after pulling the project:
@@ -53,4 +57,4 @@ When utilized with Swinject, Sourcery can automatically generate dependency inje
 This tool generates type-safe enums for Assets, colors and localizations, minimizing risks of crashes or bugs when referencing missing resources while improving maintainability and consistency. It complements well with Sourcery.
 
 ## License
-This repository code uses the MIT license, therefore you are free (and encouraged) to use it and modify it to your liking. Still, it would be highly appreciated if you drop a star if you found it helpful. For any question or feedback drop me an email at dino.chata@gmail.com
+This repository code uses the MIT license, therefore you are free (and encouraged) to use it and modify it to your liking. Still, it would be highly appreciated if you drop a star if you found it helpful. For any question or feedback send me an email at dino.chata@gmail.com
