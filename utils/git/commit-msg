@@ -1,0 +1,77 @@
+#!/bin/sh
+#set -x
+###################################################
+# A simple Git Hook to validate the commit message
+# Validations
+# 1. There should be a commit message!
+# 2. The related JIRA Issue needs to be mentioned in the branch name.
+# 3. The message needs to have a minimum of 10 characters (to encourage descriptive commit messages).
+# 4. Cannot commit to main branch.
+####################################################
+
+shopt -s nocasematch
+
+## CONFIGURATION
+JIRA_PROJECT="TEST"
+MIN_COMMIT_MSG_LENGTH=10
+MAIN_BRANCH="main"
+TICKET_ID_PATTERN="($JIRA_PROJECT-)([[:digit:]]+)"
+
+## Definitions
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(cat $COMMIT_MSG_FILE)
+COMMIT_MSG_LENGTH=${#COMMIT_MSG}
+IS_AMEND=$(ps -ocommand= -p $PPID | grep -e '--amend');
+
+## Find the current branch we are in
+BRANCH_NAME=$(git branch | grep '*' | gsed 's/* //')
+
+if [ $BRANCH_NAME == $MAIN_BRANCH ]; then
+	echo "$(tput setaf 1)Cannot commit to $MAIN_BRANCH branch.$(tput sgr0)"
+	echo "$(tput setaf 1)Aborting commit...$(tput sgr0)"
+	exit 1
+fi
+
+## Throw error if the message is empty
+if [[ -z $(grep '[^[:space:]]' $COMMIT_MSG_FILE) ]] ; then
+  	echo "$(tput setaf 1)A commit message is required.$(tput sgr0)"
+  	exit 1
+fi
+
+# Do not prepend prefix when amending
+if [ -n "$IS_AMEND" ] ; then
+	echo "$(tput setaf 3)Amend detected. Commiting with original message...$(tput sgr0)"
+	exit 0
+fi
+
+## Verify that the commit message does not contain a JIRA Issue ID
+
+# Normalize the commit message by uppercasing it for more reliable search-up
+UPPERCASED_COMMIT_MSG=$( tr '[a-z]' '[A-Z]' <<< $COMMIT_MSG)
+
+if [[ $UPPERCASED_COMMIT_MSG =~ ($TICKET_ID_PATTERN) ]]; then
+	echo "$(tput setaf 1)JIRA Issue name found in your commit message. Please remove it.$(tput sgr0)"
+	echo "$(tput setaf 1)Aborting commit...$(tput sgr0)"
+	exit 1
+fi
+
+## Validate the commit message length.
+if [ $COMMIT_MSG_LENGTH -lt $MIN_COMMIT_MSG_LENGTH ]; then
+	echo "$(tput setaf 1)Commit message needs to have a minimum length of $MIN_COMMIT_MSG_LENGTH characters.$(tput sgr0)"
+	echo "$(tput setaf 1)Aborting commit...$(tput sgr0)"
+  exit 1
+fi
+
+## Normalize the branch name by uppercasing it to ensure the Jira Issue ID prefix is uppercased
+UPPERCASED_BRANCH_NAME=$( tr '[a-z]' '[A-Z]' <<< $BRANCH_NAME)
+
+if  [[ $UPPERCASED_BRANCH_NAME =~ $TICKET_ID_PATTERN ]]; then
+	JIRA_ISSUE="$JIRA_PROJECT-${BASH_REMATCH[2]}"
+	echo "$(tput setaf 2)Appending prefix [$JIRA_ISSUE] to the commit message...$(tput sgr0)"
+else
+  echo "$(tput setaf 1)No JIRA Issue number found in the branch name. Rename your branch and try again.$(tput sgr0)"
+  echo "$(tput setaf 1)Aborting commit...$(tput sgr0)"
+  exit 1
+fi
+
+echo "[$JIRA_ISSUE]"' '$COMMIT_MSG > "$1"

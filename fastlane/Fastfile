@@ -1,0 +1,137 @@
+ROOT_DIR = File.realpath(Dir.pwd + '/..')
+
+default_platform(:ios)
+
+# We run swiftlint manually here, tell Xcode's Run Script to not do it again
+ENV['NO_SWIFTLINT'] = '1'
+
+def git_list_staged(filter)
+  Dir.chdir('..') do
+    return `git diff --cached --diff-filter=ACMR --oneline --name-only --relative -- #{filter}`.split("\n")
+  end
+end
+
+platform :ios do
+  xcodeproj = "#{ROOT_DIR}/SwiftUI_MVVM.xcodeproj"
+  simulator = 'iPhone 14'
+  scheme_prefix = 'SwiftUI-MVVM'
+  default_flavor = 'STAGING'
+  default_configuration = 'Debug'
+  app_identifier = 'com.dinocata.swiftui-mvvm'
+  match_type_development = 'development'
+  match_type_adhoc = 'adhoc'
+  match_type_appstore = 'appstore'
+  match_team_id = 'TODO'
+
+  desc 'Build the project'
+  lane :build do |options|
+    flavor = options[:flavor] || default_flavor
+    configuration = options[:configuration] || default_configuration
+    gym(
+      configuration: "#{configuration} (#{flavor})",
+      scheme: "#{scheme_prefix}#{flavor}",
+      destination: "platform=iOS Simulator,name=#{simulator}",
+      project: xcodeproj,
+      clean: false,
+      silent: true,
+      skip_archive: true,
+      skip_package_dependencies_resolution: true,
+      disable_package_automatic_updates: true
+    )
+  end
+
+  desc 'Lint the source code'
+  lane :lint do
+    swiftlint(
+      mode: :lint,
+      config_file: '.swiftlint.yml',
+      raise_if_swiftlint_error: true,
+      strict: true
+    )
+  end
+
+  desc 'Test the build'
+  lane :test do |options|
+    flavor = options[:flavor] || default_flavor
+    configuration = options[:configuration] || default_configuration
+    scan(
+      configuration: "#{configuration} (#{flavor})",
+      devices: [simulator],
+      project: xcodeproj,
+      scheme: "#{scheme_prefix}#{flavor}",
+      clean: false,
+      prelaunch_simulator: true,
+      skip_build: options[:skip_build] || false
+    )
+  end
+
+  desc 'Lint the source code (staged in GIT)'
+  lane :lint_staged do
+    files = git_list_staged("'*.swift'")
+    if files.length == 0
+      UI.message('no swift files staged in GIT')
+    else
+      swiftlint(
+        mode: :lint,
+        config_file: '.swiftlint.yml',
+        files:,
+        raise_if_swiftlint_error: true,
+        strict: true
+      )
+    end
+  end
+
+  desc 'Local Continuous Integration checks: lint, build and test'
+  lane :local_ci do |options|
+    lint
+    build_ui_components
+    test_ui_components
+    build(flavor: options[:flavor], configuration: options[:configuration])
+    test(skip_build: true)
+  end
+
+  desc 'Pre commit checks on staged files'
+  lane :pre_commit do
+    lint_staged
+  end
+
+  desc 'Build the STAGING variant of the project'
+  lane :staging do |options|
+    build(configuration: options[:configuration], flavor: 'STAGING')
+  end
+
+  desc 'Build the PROD variant of the project'
+  lane :prod do |options|
+    build(configuration: options[:configuration], flavor: 'PROD')
+  end
+
+  desc 'Fetches provisioning profiles for local device developing'
+  lane :match_local do
+    match(
+      type: match_type_development,
+      team_id: match_team_id,
+      app_identifier:,
+      readonly: true
+    )
+  end
+
+  desc 'Fetches provisioning profiles for adhoc builds'
+  lane :match_adhoc do
+    match(
+      type: match_type_adhoc,
+      team_id: match_team_id,
+      app_identifier:,
+      readonly: true
+    )
+  end
+  
+  desc 'Fetches provisioning profiles for app store upload'
+  lane :match_app_store do
+    match(
+      type: match_type_appstore,
+      team_id: match_team_id,
+      app_identifier:,
+      readonly: true
+    )
+  end
+end

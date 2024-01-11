@@ -1,0 +1,79 @@
+import Swinject
+import NetworkModule
+import Domain
+
+extension Resolver {
+    func resolve<T>(_ type: T.Type = T.self) -> T {
+        guard let instance = self.resolve(T.self) else {
+            fatalError("Could not resolve instance of type \(type)")
+        }
+        return instance
+    }
+}
+
+{% macro injectType type %}
+    {% if type.initializers.count == 0 %}
+            {{ type.name }}()
+    {% else %}
+        {% for initializer in type.initializers %}
+            {{ type.name }}(
+                {% for parameter in initializer.parameters %}
+                    {% if parameter.type.based.Injectable %}
+                {{ parameter.name }}: resolver.resolve(){% if not forloop.last%}, {% endif %}
+                    {% else %}
+                #error("Cannot inject non-injectable dependency '{{ parameter.name }}' of type '{{ parameter.unwrappedTypeName }}'")
+                    {% endif %}
+                {% endfor %}
+            )
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+{% macro registerProtocol type %}
+        // MARK: {{ type.name }}
+        container.register({{ type.name }}.self) { resolver in
+    {% for impl in types.implementing[type.name] %}
+        {% call injectType impl %}
+    {% endfor %}
+        }
+{% endmacro %}
+{% macro registerClass type %}
+        // MARK: {{ type.name }}
+        container.register({{ type.name }}.self) { resolver in
+    {% call injectType type %}
+        }
+{% endmacro %}
+@MainActor
+enum SingletonContainer {
+    /// Provides singletons
+    static let instance: Container = {
+        let container = Container(defaultObjectScope: .container)
+
+{% for type in types.protocols where type.based.Injectable and type.based.Singleton %}
+    {% call registerProtocol type %}
+
+{% endfor %}
+        return container
+    }()
+}
+
+@MainActor
+enum InstanceContainer {
+    /// Provides new instances
+    static let instance: Container = {
+        let container = Container(parent: SingletonContainer.instance, defaultObjectScope: .transient)
+
+{% for type in types.protocols where type.based.Injectable and not type.based.Singleton %}
+        {% call registerProtocol type %}
+
+{% endfor %}
+{% for type in types.classes where type.based.Injectable and not type.implements.Singleton %}
+    {% for inheritedType in type.inheritedTypes %}
+        {% if inheritedType == "Injectable" %}
+            {% call registerClass type %}
+
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+        return container
+    }()
+}

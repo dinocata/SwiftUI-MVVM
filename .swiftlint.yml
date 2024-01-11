@@ -1,0 +1,14 @@
+line_length: 
+  ignores_comments: true
+
+type_name:
+  max_length: 50
+
+included:
+  - SwiftUI_MVVM
+  - Domain
+  - UIComponents
+  - Network
+excluded:
+  - SwiftUI_MVVM/Generated
+  - UIComponents/Generated

@@ -1,0 +1,33 @@
+strings:
+  - inputs:
+      - SwiftUI_MVVM/Resources/Localizable.xcstrings
+    outputs:
+      - templateName: structured-swift5
+        output: SwiftUI_MVVM/Generated/L10n.swift
+
+xcassets:
+  - inputs:
+      - SwiftUI_MVVM/Resources/Assets.xcassets
+    outputs:
+      - templateName: swift5
+        output: SwiftUI_MVVM/Generated/Asset.swift
+
+  - inputs:
+      - UIComponents/Resources/Colors.xcassets
+    outputs:
+      - templateName: swift5
+        params:
+          enumName: Colors
+          publicAccess: true
+        output: UIComponents/Generated/Colors.swift
+
+  - inputs:
+      - UIComponents/Resources/Icons.xcassets
+    outputs:
+      - templateName: swift5
+        params:
+          enumName: Icons
+          publicAccess: true
+        
+        output: UIComponents/Generated/Icons.swift
+  

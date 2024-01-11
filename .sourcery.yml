@@ -1,0 +1,13 @@
+sources:
+  include:
+    - SwiftUI_MVVM
+    - Network
+    - Domain
+  exclude:
+    - SwiftUI_MVVM/Generated
+
+templates:
+  - Templates/Sourcery
+
+output:
+  path: SwiftUI_MVVM/Generated
