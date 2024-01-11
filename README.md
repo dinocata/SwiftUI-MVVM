@@ -51,7 +51,7 @@ Makefile is used as a "glue" to pull all the necessary dependencies (defined in 
 It also provides a convenient custom command for running a local CI and several other custom commands.
 
 ## Why Sourcery
-This tool automatically generate boiler plate code, saving you bunch of time from writing repetitive code such as class mocks, while providing consistency and better code maintenance.
+This tool automatically generates boiler plate code, saving you bunch of time from writing repetitive code such as class mocks or dependency injection containers, while providing consistency and better code maintenance.
 
 When utilized with Swinject, Sourcery can automatically generate dependency injection containers for you. To inject any dependency to any class, simply use the custom <code>Injectable</code> protocol. To learn more how this works, read [this](https://blog.trikoder.net/dependency-injection-in-swift-666a6c51ca3a) article on how to setup automized dependency injection in Swift.
 
