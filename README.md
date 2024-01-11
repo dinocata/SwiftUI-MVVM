@@ -1,9 +1,9 @@
 # SwiftUI MVVM demo
-This is a demo iOS project which utilizes [Xcodegen](https://github.com/yonaskolb/XcodeGen), Makefile, [Swiftlint](https://github.com/realm/SwiftLint), [Sourcery](https://github.com/krzysztofzablocki/Sourcery), [Swiftgen](https://github.com/SwiftGen/SwiftGen) and [Swinject](https://github.com/Swinject/Swinject) in order to install and generate the project with all the dependencies. 
+This is a demo iOS project which utilizes [Xcodegen](https://github.com/yonaskolb/XcodeGen), Makefile, [Swiftlint](https://github.com/realm/SwiftLint), [Sourcery](https://github.com/krzysztofzablocki/Sourcery), [Swiftgen](https://github.com/SwiftGen/SwiftGen) and [Swinject](https://github.com/Swinject/Swinject) in order to install and generate the project with all the necessary dependencies. 
 
 This is a modern SwiftUI+Combine replacement for the old RxSwift-MVVM [project](https://github.com/dinocata/rxswift-mvvm-demo) I made few years ago, which is now deprecated.
 
-This app has minimal functionality and serves mainly as a showcase for how to setup a SwiftUI MVVM modular architecture which uses different tools to help you build your app faster and to make it more maintainable and improve its scalability. This is especially useful for larger projects.
+This app has minimal functionality and serves mainly as a showcase for how to setup a SwiftUI MVVM modular architecture which uses different tools to help you develop your app faster, to make it more maintainable and to improve its scalability. This is especially useful for larger projects.
 
 ### Note:
 This is a work-in-progress project and will be updated in the future with further code examples.
@@ -14,11 +14,11 @@ This is a work-in-progress project and will be updated in the future with furthe
 - Combine
 - Async await
 
-This is not just a mashup of bunch of different tools and frameworks just to have it in the project for the sake of it. All the tools and frameworks are used with specific purpose where it was appropriate so they properly complement each other with no overlapping.
+This is not just a mashup of bunch of different tools and frameworks just to have it in the project for the sake of it. All the tools and frameworks are used with specific purpose where it was appropriate so they properly complement each other without overlapping.
 
-Tools such as Xcodegen and Sourcery might be overkill for small projects, but will be a life and time saver for large projects, as long as you use them properly. Like any tool. 🔨 
+Tools such as Xcodegen and Sourcery might be overkill for small projects, but will be both a life and time saver for large projects, as long as you use them properly, just like any tool. 🔨 
 
-Luckily, they are really easy to use and require minimal maintenance once initially setup.
+Luckily, they are really easy to use and require minimal maintenance after an initial setup.
 
 ## How to install
 Simply run the following commands in the root directory after pulling the project:
