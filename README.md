@@ -14,9 +14,11 @@ This is a work-in-progress project and will be updated in the future with furthe
 - Combine
 - Async await
 
-This is not a mashup of bunch of different frameworks just to have it in the project for the sake of it.  All the tools and frameworks are used with specific purpose where it was appropriate so they properly complement each other with no overlapping.
+This is not just a mashup of bunch of different tools and frameworks just to have it in the project for the sake of it. All the tools and frameworks are used with specific purpose where it was appropriate so they properly complement each other with no overlapping.
 
-For example, async-await is used for all asynchronous work, while Combine is used primarily for reactive purposes, such as handling user interaction or updating UI based on some app state.
+Tools such as Xcodegen and Sourcery might be overkill for small projects, but can and will be a life saver for large projects, as long as you use them properly. Like any tool. 🔨 
+
+Luckily, they are really easy to use and require minimal maintenance once initially setup.
 
 ## How to install
 Simply run the following commands in the root directory after pulling the project:
