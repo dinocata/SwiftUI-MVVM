@@ -51,3 +51,6 @@ When utilized with Swinject, Sourcery can automatically generate dependency inje
 
 ## Why Swiftgen
 This tool generates type-safe enums for Assets, colors and localizations, minimizing risks of crashes or bugs when referencing missing resources while improving maintainability and consistency. It complements well with Sourcery.
+
+## License
+This repository code uses the MIT license, therefore you are free (and encouraged) to use it and modify it to your liking. Still, it would be highly appreciated if you drop a star if you found it helpful. For any question or feedback drop me an email at dino.chata@gmail.com
