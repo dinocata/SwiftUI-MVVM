@@ -16,7 +16,7 @@ This is a work-in-progress project and will be updated in the future with furthe
 
 This is not just a mashup of bunch of different tools and frameworks just to have it in the project for the sake of it. All the tools and frameworks are used with specific purpose where it was appropriate so they properly complement each other with no overlapping.
 
-Tools such as Xcodegen and Sourcery might be overkill for small projects, but can and will be a life and time saver for large projects, as long as you use them properly. Like any tool. 🔨 
+Tools such as Xcodegen and Sourcery might be overkill for small projects, but will be a life and time saver for large projects, as long as you use them properly. Like any tool. 🔨 
 
 Luckily, they are really easy to use and require minimal maintenance once initially setup.
 
