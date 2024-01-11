@@ -5,6 +5,7 @@ This is a modern SwiftUI+Combine replacement for the old RxSwift-MVVM [project](
 
 This app has minimal functionality and serves mainly as a showcase for how to setup a SwiftUI MVVM modular architecture which uses different tools to help you build your app faster and to make it more maintainable and improve its scalability. This is especially useful for larger projects.
 
+### Note:
 This is a work-in-progress project and will be updated in the future with further code examples.
 
 # Tech Stack
