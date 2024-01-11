@@ -1,5 +1,7 @@
 # SwiftUI MVVM demo
-This is a demo iOS project which utilizes [Xcodegen](https://github.com/yonaskolb/XcodeGen), Makefile, [Swiftlint](https://github.com/realm/SwiftLint), [Sourcery](https://github.com/krzysztofzablocki/Sourcery), [Swiftgen](https://github.com/SwiftGen/SwiftGen) and [Swinject](https://github.com/Swinject/Swinject) in order to install and generate the project with all the dependencies.
+This is a demo iOS project which utilizes [Xcodegen](https://github.com/yonaskolb/XcodeGen), Makefile, [Swiftlint](https://github.com/realm/SwiftLint), [Sourcery](https://github.com/krzysztofzablocki/Sourcery), [Swiftgen](https://github.com/SwiftGen/SwiftGen) and [Swinject](https://github.com/Swinject/Swinject) in order to install and generate the project with all the dependencies. 
+
+This is a modern SwiftUI+Combine replacement for the old RxSwift-MVVM [project](https://github.com/dinocata/rxswift-mvvm-demo) I made few years ago, which is now deprecated.
 
 This app has minimal functionality and serves mainly as a showcase for how to setup a SwiftUI MVVM modular architecture which uses different tools to help you build your app faster and to make it more maintainable and improve its scalability. This is especially useful for larger projects.
 
