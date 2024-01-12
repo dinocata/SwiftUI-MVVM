@@ -2,6 +2,7 @@ sources:
   include:
     - SwiftUI_MVVM
     - Network
+    - Storage
     - Domain
   exclude:
     - SwiftUI_MVVM/Generated

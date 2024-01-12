@@ -1,5 +1,6 @@
 import Swinject
 import NetworkModule
+import StorageModule
 import Domain
 
 extension Resolver {
@@ -31,7 +32,7 @@ extension Resolver {
 {% macro registerProtocol type %}
         // MARK: {{ type.name }}
         container.register({{ type.name }}.self) { resolver in
-    {% for impl in types.implementing[type.name] %}
+    {% for impl in types.implementing[type.name] where not impl.name|hasPrefix:"Mock" %}
         {% call injectType impl %}
     {% endfor %}
         }

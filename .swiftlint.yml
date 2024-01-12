@@ -9,6 +9,7 @@ included:
   - Domain
   - UIComponents
   - Network
+  - Storage
 excluded:
   - SwiftUI_MVVM/Generated
   - UIComponents/Generated

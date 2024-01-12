@@ -8,7 +8,7 @@
 import SwiftUI
 
 public enum BackgroundColor {
-    case primmary
+    case primary
     case secondary
     case tertiary
 }
@@ -16,7 +16,7 @@ public enum BackgroundColor {
 public extension BackgroundColor {
     var color: Color {
         switch self {
-        case .primmary: return Colors.Surface.primary.swiftUIColor
+        case .primary: return Colors.Surface.primary.swiftUIColor
         case .secondary: return Colors.Surface.secondary.swiftUIColor
         case .tertiary: return Colors.Surface.tertiary.swiftUIColor
         }

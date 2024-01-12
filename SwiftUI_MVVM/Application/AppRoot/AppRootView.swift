@@ -12,7 +12,9 @@ struct AppRootView: View {
     @StateObject private var viewModel: ViewModel = .init()
 
     var body: some View {
-        WelcomeView()
+        NavigationStack {
+            WelcomeView()
+        }
     }
 }
 

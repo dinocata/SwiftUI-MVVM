@@ -9,18 +9,30 @@ import SwiftUI
 import UIComponentsModule
 
 struct WelcomeView: View {
-    var body: some View {
-        VStack(spacing: .spacing16) {
-            headerImage
-            titleStack
-            PrimaryButton(title: L10n.Action.continue, style: .accent) {
+    @State private var showingList: Bool = false
 
+    @StateObject private var articleListViewModel: ArticleListView.ViewModel = .instance
+
+    var body: some View {
+        ZStack {
+            VStack(spacing: .spacing16) {
+                headerImage
+                titleStack
+                PrimaryButton(title: L10n.Action.continue, style: .accent) {
+                    showingList = true
+                }
             }
+            .padding(.spacing24)
+            .backgroundColor(.primary)
+            .border(color: BackgroundColor.tertiary.color, cornerRadius: .cornerRadius16)
+            .padding(.spacing24)
         }
-        .padding(.spacing24)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .backgroundColor(.secondary)
-        .border(color: BackgroundColor.tertiary.color, cornerRadius: .cornerRadius16)
-        .padding(.spacing24)
+        .navigationDestination(isPresented: $showingList) {
+            ArticleListView(viewModel: articleListViewModel)
+        }
+        .toolbar(.visible)
     }
 
     private var headerImage: some View {

@@ -8,6 +8,10 @@ configs:
   Release (STAGING): release
 
 packages:
+  swift-collections:
+    github: apple/swift-collections
+    majorVersion: 1.0.6
+
   Swinject:
     github: Swinject/Swinject
     majorVersion: 2.8.0
@@ -91,6 +95,7 @@ targets:
       - target: Domain
       - target: UIComponentsModule
       - target: NetworkModule
+      - target: StorageModule
 
       - package: Swinject
         product: Swinject
@@ -114,6 +119,10 @@ targets:
       
     sources:
       - Domain
+
+    dependencies:
+      - package: swift-collections
+        product: OrderedCollections
 
     scheme:
       gatherCoverageData: true
@@ -155,6 +164,28 @@ targets:
       
     sources:
       - Network
+
+    dependencies:
+      - target: Domain
+
+    scheme:
+      gatherCoverageData: true
+
+  ###############################
+  ### Storage Framework ###
+  ###############################
+  StorageModule:
+    type: framework
+    platform: iOS
+    deploymentTarget: *iOSDeploymentTarget
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.dinocata.swiftui-mvvm.storage
+      INFOPLIST_FILE: Storage/Info.plist
+      DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+      APPLICATION_EXTENSION_API_ONLY: true
+      
+    sources:
+      - Storage
 
     dependencies:
       - target: Domain
