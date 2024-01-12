@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  SwiftUI-MVVM
+
+  Created by Dino Catalinac on 12.01.2024..
+  
+*/
+
+"welcome.title" = "Dobrodošli u SwiftUI MVVM demo aplikaciju";
+"welcome.subtitle" = "Ovo je demo aplikacija sa minimalnom funkcionalnošću koja služi isključivo u demonstrativne svrhe kao primjer kako složiti SwiftUI MVVM modularnu arhitekturu koristeći različite alate";
+"action.continue" = "Nastavi";
