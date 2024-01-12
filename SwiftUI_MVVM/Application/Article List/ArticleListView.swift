@@ -10,7 +10,8 @@ import UIComponentsModule
 import Domain
 
 struct ArticleListView: View {
-    @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject var appRouter: AppRouter
+    @StateObject var viewModel: ViewModel = .instance
 
     var body: some View {
         List {
@@ -43,12 +44,13 @@ struct ArticleListView: View {
                 .textStyle(.footnote)
                 .textColor(.primary)
         }
+        .wrapInButton {
+            appRouter.navigate(to: .articleDetails(articleID: article.id))
+        }
     }
 }
 
 #Preview {
-    let viewModel = ArticleListView.ViewModel.instance
-
     let author = Author(
         id: "123",
         dateCreated: Date(),
@@ -64,7 +66,7 @@ struct ArticleListView: View {
         author: author
     )
 
-    viewModel.articles = [article]
-
-    return ArticleListView(viewModel: viewModel)
+    let articleListView = ArticleListView()
+    articleListView.viewModel.articles = [article]
+    return articleListView
 }

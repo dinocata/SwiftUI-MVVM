@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-public protocol PersistableModel: Identifiable, Hashable {
+public protocol PersistableModel: Identifiable, Hashable, Codable {
     var id: String { get }
     var dateCreated: Date { get }
 }

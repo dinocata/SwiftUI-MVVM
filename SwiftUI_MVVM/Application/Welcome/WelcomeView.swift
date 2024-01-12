@@ -9,8 +9,8 @@ import SwiftUI
 import UIComponentsModule
 
 struct WelcomeView: View {
-    @State private var showingList: Bool = false
 
+    @EnvironmentObject var appRouter: AppRouter
     @StateObject private var articleListViewModel: ArticleListView.ViewModel = .instance
 
     var body: some View {
@@ -19,7 +19,7 @@ struct WelcomeView: View {
                 headerImage
                 titleStack
                 PrimaryButton(title: L10n.Action.continue, style: .accent) {
-                    showingList = true
+                    appRouter.navigate(to: .articleList)
                 }
             }
             .padding(.spacing24)
@@ -29,9 +29,6 @@ struct WelcomeView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .backgroundColor(.secondary)
-        .navigationDestination(isPresented: $showingList) {
-            ArticleListView(viewModel: articleListViewModel)
-        }
         .toolbar(.visible)
     }
 

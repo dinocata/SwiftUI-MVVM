@@ -9,12 +9,14 @@ import SwiftUI
 import UIComponentsModule
 
 struct AppRootView: View {
-    @StateObject private var viewModel: ViewModel = .init()
+    @StateObject private var router = AppRouter()
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.path) {
             WelcomeView()
+                .navigationDestination(for: AppDestination.self, destination: \.view)
         }
+        .environmentObject(router)
     }
 }
 
