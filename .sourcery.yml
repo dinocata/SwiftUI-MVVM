@@ -1,14 +1,14 @@
 sources:
   include:
-    - SwiftUI_MVVM
+    - Application
     - Network
     - Storage
     - Domain
   exclude:
-    - SwiftUI_MVVM/Generated
+    - Application/Generated
 
 templates:
   - Templates/Sourcery
 
 output:
-  path: SwiftUI_MVVM/Generated
+  path: Application/Generated

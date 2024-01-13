@@ -18,11 +18,7 @@ struct ArticleListView: View {
             ForEach(viewModel.articles, content: articleView)
         }
         .animation(.spring(duration: .short), value: viewModel.articles)
-        .task {
-            await viewModel.loadArticles()
-        }
         .navigationTitle("Articles")
-        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Add new") {
@@ -31,6 +27,9 @@ struct ArticleListView: View {
                     }
                 }
             }
+        }
+        .task {
+            await viewModel.loadArticles()
         }
     }
 

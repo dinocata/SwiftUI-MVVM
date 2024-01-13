@@ -13,6 +13,8 @@ typealias AppRouter = Router<AppDestination>
 enum AppDestination: Destination {
     case articleList
     case articleDetails(articleID: String)
+
+    case deviceList
 }
 
 extension AppDestination {
@@ -23,6 +25,9 @@ extension AppDestination {
 
         case .articleDetails(let articleID):
             ArticleDetailsView(articleID: articleID)
+
+        case .deviceList:
+            DeviceListView()
         }
     }
 }

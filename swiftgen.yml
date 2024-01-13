@@ -1,16 +1,16 @@
 strings:
   - inputs:
-      - SwiftUI_MVVM/Resources/en.lproj/Localizable.strings
+      - Application/Resources/en.lproj/Localizable.strings
     outputs:
       - templateName: structured-swift5
-        output: SwiftUI_MVVM/Generated/L10n.swift
+        output: Application/Generated/L10n.swift
 
 xcassets:
   - inputs:
-      - SwiftUI_MVVM/Resources/Assets.xcassets
+      - Application/Resources/Assets.xcassets
     outputs:
       - templateName: swift5
-        output: SwiftUI_MVVM/Generated/Asset.swift
+        output: Application/Generated/Asset.swift
 
   - inputs:
       - UIComponents/Resources/Colors.xcassets

@@ -28,7 +28,7 @@ struct ArticleDetailsView: View {
 
             Spacer()
 
-            PrimaryButton(title: "Done", action: appRouter.navigateBack)
+            PrimaryButton(title: "Done", style: .primary, action: appRouter.navigateToRoot)
         }
         .padding(.spacing24)
         .task {

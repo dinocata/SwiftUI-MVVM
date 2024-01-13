@@ -18,8 +18,13 @@ struct WelcomeView: View {
             VStack(spacing: .spacing16) {
                 headerImage
                 titleStack
-                PrimaryButton(title: L10n.Action.continue, style: .accent) {
+
+                PrimaryButton(title: "Storage example", size: .medium) {
                     appRouter.navigate(to: .articleList)
+                }
+
+                PrimaryButton(title: "Network example", size: .medium) {
+                    appRouter.navigate(to: .deviceList)
                 }
             }
             .padding(.spacing24)

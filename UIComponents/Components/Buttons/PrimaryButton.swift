@@ -31,7 +31,7 @@ public struct PrimaryButton: View {
 
     public init(
         title: String,
-        style: Style = .primary,
+        style: Style = .accent,
         state: State = .active,
         size: Size = .large,
         action: @escaping CompletionCallback

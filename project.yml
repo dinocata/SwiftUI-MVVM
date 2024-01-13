@@ -26,10 +26,10 @@ targets:
     deploymentTarget: *iOSDeploymentTarget
 
     configFiles:
-      Debug (PROD): SwiftUI_MVVM/Configuration/PROD.xcconfig
-      Release (PROD): SwiftUI_MVVM/Configuration/PROD.xcconfig
-      Debug (STAGING): SwiftUI_MVVM/Configuration/STAGING.xcconfig
-      Release (STAGING): SwiftUI_MVVM/Configuration/STAGING.xcconfig
+      Debug (PROD): Application/Configuration/PROD.xcconfig
+      Release (PROD): Application/Configuration/PROD.xcconfig
+      Debug (STAGING): Application/Configuration/STAGING.xcconfig
+      Release (STAGING): Application/Configuration/STAGING.xcconfig
 
     settings:
       base:
@@ -37,13 +37,11 @@ targets:
         CURRENT_PROJECT_VERSION: 1
         MARKETING_VERSION: 1.0.0
         DEVELOPMENT_TEAM: "ABCDEF123"
-        INFOPLIST_FILE: SwiftUI_MVVM/Info.plist
-        CODE_SIGN_ENTITLEMENTS: SwiftUI_MVVM/swiftui_mvvm.entitlements
-        #SWIFT_OBJC_BRIDGING_HEADER: SwiftUI_MVVM/Bridging-Header.h
+        INFOPLIST_FILE: Application/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Application/swiftui_mvvm.entitlements
         DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
         FRAMEWORK_SEARCH_PATHS: "$(SRCROOT)/**"
         USER_HEADER_SEARCH_PATHS: "$(SRCROOT)/**"
-        #OTHER_LDFLAGS: ["-ObjC"]
 
       configs:
         Debug (PROD):
@@ -67,7 +65,7 @@ targets:
         - STAGING
 
     sources:
-      - SwiftUI_MVVM
+      - Application
 
     preBuildScripts:
       - name: SwiftLint

@@ -22,6 +22,13 @@ public extension Target {
     var additionalHeaders: [String: String]? { nil }
     var authenticationType: AuthenticationType { .public }
     var apiVersion: String? { nil }
+
+    var url: URL {
+        guard !path.isEmpty else {
+            return baseURL
+        }
+        return baseURL.appendingPath(path)
+    }
 }
 
 public enum AuthenticationType {

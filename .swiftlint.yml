@@ -5,11 +5,11 @@ type_name:
   max_length: 50
 
 included:
-  - SwiftUI_MVVM
+  - Application
   - Domain
   - UIComponents
   - Network
   - Storage
 excluded:
-  - SwiftUI_MVVM/Generated
+  - Application/Generated
   - UIComponents/Generated

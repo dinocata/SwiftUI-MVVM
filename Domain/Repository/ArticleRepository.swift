@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol ArticleRepository: Injectable, Singleton {
+public protocol ArticleRepository: Injectable {
     func find(by id: String) async throws -> Article
     func findAll() async throws -> [Article]
 

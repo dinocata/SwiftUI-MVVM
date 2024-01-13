@@ -7,13 +7,9 @@
 
 import Domain
 
-public final class ArticleStorage: Storage<ArticleEntity>, ArticleRepository {
+public final class ArticleStorage: Storage<ArticleEntity>, Injectable, Singleton {
 
     public override init(coreDataManager: CoreDataManager, coreDataStack: CoreDataStack) {
         super.init(coreDataManager: coreDataManager, coreDataStack: coreDataStack)
-    }
-
-    public func findAll() async throws -> [Article] {
-        try await super.findAll()
     }
 }
