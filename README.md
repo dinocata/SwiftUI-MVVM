@@ -11,6 +11,7 @@ This is a work-in-progress project and will be updated in the future with furthe
 ### Todos:
 - User defaults store manager
 - Dark-light mode switcher
+- Article and device list search functionality
 - Form view for creating new articles and editing existing ones
 - Creating new devices on the API using a <code>POST</code> example
 - Background caching of devices fetched from network API
