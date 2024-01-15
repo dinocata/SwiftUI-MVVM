@@ -18,10 +18,10 @@ struct ArticleListView: View {
             ForEach(viewModel.articles, content: articleView)
         }
         .animation(.spring(duration: .short), value: viewModel.articles)
-        .navigationTitle("Articles")
+        .navigationTitle(L10n.Articles.title)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Add new") {
+                Button(L10n.Articles.Action.addNew) {
                     Task {
                         await viewModel.addNewArticle()
                     }

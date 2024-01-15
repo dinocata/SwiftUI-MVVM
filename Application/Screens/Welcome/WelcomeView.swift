@@ -11,7 +11,6 @@ import UIComponentsModule
 struct WelcomeView: View {
 
     @EnvironmentObject var appRouter: AppRouter
-    @StateObject private var articleListViewModel: ArticleListView.ViewModel = .instance
 
     var body: some View {
         ZStack {
@@ -19,11 +18,11 @@ struct WelcomeView: View {
                 headerImage
                 titleStack
 
-                PrimaryButton(title: "Storage example", size: .medium) {
+                PrimaryButton(title: L10n.Welcome.Cta.storage, size: .medium) {
                     appRouter.navigate(to: .articleList)
                 }
 
-                PrimaryButton(title: "Network example", size: .medium) {
+                PrimaryButton(title: L10n.Welcome.Cta.network, size: .medium) {
                     appRouter.navigate(to: .deviceList)
                 }
             }

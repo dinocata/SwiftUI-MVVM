@@ -17,7 +17,7 @@ struct DeviceListView: View {
             ForEach(viewModel.devices, content: deviceView)
         }
         .animation(.spring(duration: .short), value: viewModel.devices)
-        .navigationTitle("Devices")
+        .navigationTitle(L10n.Devices.title)
         .task {
             await viewModel.loadDevices()
         }
