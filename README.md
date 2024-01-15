@@ -8,6 +8,14 @@ This app has minimal functionality and serves mainly as a showcase for how to se
 ### Note:
 This is a work-in-progress project and will be updated in the future with further code examples.
 
+### Todos:
+- User defaults store manager
+- Dark-light mode switcher
+- Form view for creating new articles and editing existing ones
+- Creating new devices on the API using a <code>POST</code> example
+- Background caching of devices fetched from network API
+- Possibly more stuff in the future...
+
 ## Tech Stack
 - Swift
 - SwiftUI
